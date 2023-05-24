@@ -122,3 +122,7 @@ a {
   height: 200px; /* Set your desired height */
   object-fit: cover; /* Ensure the image fills the container */
 }
+
+.justify-right {
+  justify-content: flex-end;
+}
