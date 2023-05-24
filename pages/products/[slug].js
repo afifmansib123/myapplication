@@ -19,7 +19,9 @@ export default function productscreen(){
     const allproducts = data.products.find((x)=> x.slug === slug)
 
     const addtocart = () => {
-        dispatch({type : "ADD_TO_CART", payload: {...allproducts, quantity: 1}})
+        const existitem = state.cart.cartitems.find((item)=>item.slug==allproducts.slug)
+        const quantity = existitem? existitem.quantity + 1 : 1
+        dispatch({type : "ADD_TO_CART", payload: {...allproducts, quantity}})
     }
 
     return(
