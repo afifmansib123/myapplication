@@ -24,6 +24,8 @@ export default function productscreen(){
         dispatch({type : "ADD_TO_CART", payload: {...allproducts, quantity}})
     }
 
+    console.log(JSON.stringify(state))
+
     return(
         <Layout title = {allproducts.name}>
             <div className="py-2">
@@ -51,6 +53,7 @@ export default function productscreen(){
                 <div>{allproducts.name}</div>
                 <div>{allproducts.quantity}</div>
                 <button className="primary-button w-full" style={{color:'blue'}} onClick={addtocart}>add to cart</button>
+                <Link legacyBehavior href = "/cartscreen">back to product</Link>
             </div>
             </div>
             </div>

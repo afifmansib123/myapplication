@@ -17,7 +17,7 @@ export const reducer = (state,action) => {
 
             const cartitems = existitem
             //if it does exist
-            ?state.cart.cartitems.map((item)=>item.name==existitem.name?newitem:item)
+            ?state.cart.cartitems.map((item)=>item.slug==existitem.slug?newitem:item)
             //if doesnt exist
             :[...state.cart.cartitems, newitem]
             
