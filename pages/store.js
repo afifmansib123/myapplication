@@ -22,6 +22,14 @@ export const reducer = (state,action) => {
             :[...state.cart.cartitems, newitem]
             
             return {...state, cart: {...state.cart, cartitems}}
+
+            case "DELETE_FROM_CART":
+                const deletedItem = action.payload;
+                const updatedCartItems = state.cart.cartitems.filter(
+                  (item) => item.slug !== deletedItem.slug
+                );
+                return { ...state, cart: { ...state.cart, cartitems: updatedCartItems } };
+
     default : 
         return state
             

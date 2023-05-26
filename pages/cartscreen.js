@@ -12,6 +12,10 @@ export default function Cartscreen () {
     console.log('putkimari')
     console.log(JSON.stringify(cartitems))
 
+    const removeFromCart = (item) => {
+      dispatch({ type: "DELETE_FROM_CART", payload: item });
+    };
+
     return(
         <Layout>
             <div className="grid md:grid-cols-5 md:gap-5">
@@ -19,8 +23,8 @@ export default function Cartscreen () {
             <table className="min-w-full">
                 <thead className="border-b">
                     <tr>
-                    <th>Item</th>
-                    <th>Item</th>
+                    <th className="p-5 text-right">Item</th>
+                    <th className="p-5 text-right">Item</th>
                     <th>Item</th>
                     <th>Item</th>
                     </tr>
@@ -34,8 +38,8 @@ export default function Cartscreen () {
             <Image
               src={item.image}
               alt={item.name}
-              width={600}
-              height={600}
+              width={100}
+              height={100}
             />
             &nbsp;{item.name}
           </a>
@@ -43,6 +47,7 @@ export default function Cartscreen () {
       </td>
       <td className="p-5 text-right">{item.quantity}</td>
       <td className="p-5 text-right">{item.price}</td>
+      <td className="text-right"><button onClick={()=>removeFromCart(item)}>X</button></td>
     </tr>
   ))}
 </tbody>
