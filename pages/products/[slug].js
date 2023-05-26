@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";
 import { Store } from "../store";
+import Router from "next/router";
 
 
 export default function productscreen(){
@@ -22,6 +23,7 @@ export default function productscreen(){
         const existitem = state.cart.cartitems.find((item)=>item.slug==allproducts.slug)
         const quantity = existitem? existitem.quantity + 1 : 1
         dispatch({type : "ADD_TO_CART", payload: {...allproducts, quantity}})
+        Router.push('/cartscreen')
     }
 
     console.log(JSON.stringify(state))
