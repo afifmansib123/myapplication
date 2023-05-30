@@ -16,6 +16,11 @@ export default function Cartscreen () {
       dispatch({ type: "DELETE_FROM_CART", payload: item });
     };
 
+    const updatecartHandler = (item, qty) => {
+      const quantity = Number(qty)
+      dispatch({type:"ADD_TO_CART",payload:{...item,quantity : quantity}})
+    }
+
     const totalprice = 0
 
     return(
@@ -47,15 +52,21 @@ export default function Cartscreen () {
           </a>
         </Link>
       </td>
-      <td className="p-5 text-right">{item.quantity}</td>
+      <td className="p-5 text-right">
+      <select value={item.quantity} onChange={(e)=>updatecartHandler(item,e.target.value)}>
+      {[...Array(20).keys()].map((x)=><option key={x+1} value={x+1}>{x+1}</option>)}
+      </select>
+      </td>
       <td className="p-5 text-right">{item.price}</td>
       <td className="text-right"><button onClick={()=>removeFromCart(item)}>X</button></td>
+      
     </tr>
   ))}
   
 </tbody>
 <tfoot className="border-b">
   subtotal : {cartitems.reduce((a,c)=>a+c.quantity*c.price,0)}
+  <button type="button" class="btn btn-primary">Checkout</button>
 </tfoot>
             </table>
             </div>
