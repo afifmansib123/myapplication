@@ -54,7 +54,7 @@ export default function Cartscreen () {
       </td>
       <td className="p-5 text-right">
       <select value={item.quantity} onChange={(e)=>updatecartHandler(item,e.target.value)}>
-      {[...Array(20).keys()].map((x)=><option key={x+1} value={x+1}>{x+1}</option>)}
+      {[...Array(item.countinstock).keys()].map((x)=><option key={x+1} value={x+1}>{x+1}</option>)}
       </select>
       </td>
       <td className="p-5 text-right">{item.price}</td>
