@@ -16,6 +16,8 @@ export default function Cartscreen () {
       dispatch({ type: "DELETE_FROM_CART", payload: item });
     };
 
+    const totalprice = 0
+
     return(
         <Layout>
             <div className="grid md:grid-cols-5 md:gap-5">
@@ -50,7 +52,11 @@ export default function Cartscreen () {
       <td className="text-right"><button onClick={()=>removeFromCart(item)}>X</button></td>
     </tr>
   ))}
+  
 </tbody>
+<tfoot className="border-b">
+  subtotal : {cartitems.reduce((a,c)=>a+c.quantity*c.price,0)}
+</tfoot>
             </table>
             </div>
             </div>
