@@ -4,8 +4,12 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 function Cartscreen () {
+
+  const myrouter = useRouter()
+
     const {state, dispatch} = useContext(Store)
 
     const {cart: {cartitems}} = state
@@ -67,7 +71,11 @@ function Cartscreen () {
 </tbody>
 <tfoot className="border-b">
   subtotal : {cartitems.reduce((a,c)=>a+c.quantity*c.price,0)}
-  <button type="button" class="btn btn-primary">Checkout</button>
+  <button type="button" class="btn btn-primary" 
+  
+    onClick={()=>myrouter.push('login?redirect=/shipping')}
+
+  >Checkout</button>
 </tfoot>
             </table>
             </div>
