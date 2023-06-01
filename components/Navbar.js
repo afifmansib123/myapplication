@@ -1,10 +1,15 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Store } from "@/pages/store"
 
 const Navbar = () => {
 
   const {state, dispatch} = useContext(Store)
   const {cart} = state
+
+  const [cartitemcount,setcaritemcount] = useState(0)
+  useEffect(()=>{
+    setcaritemcount(cart.cartitems.reduce((a,c)=>a+c.quantity,0))
+  },[])
 
   return (
     <nav class="bg-gray-800">
@@ -35,8 +40,8 @@ const Navbar = () => {
                 <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Sunmi THAILAND</a>
 
                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cart
-                {cart.cartitems.length>0 && (<span className="ml-1 rounded-full">
-                  {cart.cartitems.reduce((a,c)=>a+c.quantity,0)}
+                {cartitemcount>0 && (<span className="ml-1 rounded-full">
+                  {cartitemcount}
                 </span>)}
                 
                 </a>
