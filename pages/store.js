@@ -29,6 +29,7 @@ export const reducer = (state,action) => {
                 const updatedCartItems = state.cart.cartitems.filter(
                   (item) => item.slug !== deletedItem.slug
                 );
+                Cookies.set('cart', JSON.stringify({ ...state.cart, cartitems: updatedCartItems }))
                 return { ...state, cart: { ...state.cart, cartitems: updatedCartItems } };
 
     default : 
