@@ -3,8 +3,9 @@ import { Store } from "./store";
 import Layout from "@/components/Layout";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
-export default function Cartscreen () {
+function Cartscreen () {
     const {state, dispatch} = useContext(Store)
 
     const {cart: {cartitems}} = state
@@ -74,3 +75,5 @@ export default function Cartscreen () {
         </Layout>
     )
 }
+
+export default dynamic(()=>Promise.resolve(Cartscreen),{ssr:false})
