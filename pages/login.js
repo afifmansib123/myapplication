@@ -1,63 +1,93 @@
-import Layout from "@/components/Layout";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import Layout from '../components/Layout';
+import { getError } from '../utils/error';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
-export default function Login() {
-
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
-    const submithandler = ({email, password}) => {
-        console.log(email,password)
-    }
-    return (
+export default function LoginScreen() {
+    const { data: session } = useSession();
+  
+    const router = useRouter();
+    const { redirect } = router.query;
+  
+    useEffect(() => {
+      if (session?.user) {
+        router.push(redirect || '/');
+      }
+    }, [router, session, redirect]);
+  
+    const {
+      handleSubmit,
+      register,
+      formState: { errors },
+    } = useForm();
+    const submitHandler = async ({ email, password }) => {
+        try {
+          const result = await signIn('credentials', {
+            redirect: false,
+            email,
+            password,
+          });
+          if (result.error) {
+            toast.error(result.error);
+          }
+        } catch (err) {
+          toast.error(getError(err));
+        }
+      };
+      return (
         <Layout>
-            <section class="vh-100 gradient-custom">
-                <div class="container py-5 h-100">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <form onSubmit={handleSubmit(submithandler)}>
-                            <div class="card-body p-4 p-md-5">
-                                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Login Form</h3>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4 pb-2">
-
-                                    <div class="form-outline">
-                                        <input type="email" id="emailAddress" class="form-control form-control-lg" 
-                                        {...register('email', {required : 'please enter valid email',
-                                        pattern:{
-                                            value : /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                            message : 'please enter valid email'
-                                        }})}
-                                        />
-                                        {errors.email && (<div className="text-red-500">{errors.email.message}</div>)}
-                                        <label class="form-label" for="emailAddress">Email</label>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6 mb-4 pb-2">
-                                    <div class="form-outline">
-                                        <input type="password" id="password" class="form-control form-control-lg" 
-                                        {...register('password', {required : 'please enter password',
-                                        minLength:{value:8,message:'password must be more than 7 charecters'}})}
-                                        />
-                                        {errors.password && (<div className="text-red-500">{errors.password.message}</div>)}
-                                        <label class="form-label" for="password">Password</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-success">Login</button>
-                                    <p>dont have an account yet?</p>
-                                    <Link href="register">Register</Link>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </section>
-        </Layout>
-    )
+             <form
+        className="mx-auto max-w-screen-md"
+        onSubmit={handleSubmit(submitHandler)}
+      >
+        <h1 className="mb-4 text-xl">Login</h1>
+        <div className="mb-4">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            {...register('email', {
+              required: 'Please enter email',
+              pattern: {
+                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                message: 'Please enter valid email',
+              },
+            })}
+            className="w-full"
+            id="email"
+            autoFocus
+          ></input>
+          {errors.email && (
+            <div className="text-red-500">{errors.email.message}</div>
+          )}
+        </div>
+        <div className="mb-4">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            {...register('password', {
+              required: 'Please enter password',
+              minLength: { value: 6, message: 'password is more than 5 chars' },
+            })}
+            className="w-full"
+            id="password"
+            autoFocus
+          ></input>
+          {errors.password && (
+            <div className="text-red-500 ">{errors.password.message}</div>
+          )}
+        </div>
+        <div className="mb-4 ">
+          <button className="primary-button">Login</button>
+        </div>
+        <div className="mb-4 ">
+          Don&apos;t have an account? &nbsp;
+          <Link href="register">Register</Link>
+        </div>
+      </form>
+    </Layout>
+  );
 }
