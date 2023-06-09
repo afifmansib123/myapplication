@@ -126,3 +126,7 @@ a {
 .justify-right {
   justify-content: flex-end;
 }
+
+.dropdown-link{
+  @apply flex p-2 hover:bg-slate-400
+}

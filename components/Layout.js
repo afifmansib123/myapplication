@@ -5,6 +5,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '@/pages/store';
+import { Menu } from '@headlessui/react'
+import DropdownLink from './DopdownLink';
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -19,7 +21,7 @@ export default function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title ? title + ' - Amazona' : 'Amazona'}</title>
+        <title>{title ? title + ' - Sunmi POS' : 'Sunmi POS'}</title>
         <meta name="description" content="Ecommerce Website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -30,7 +32,7 @@ export default function Layout({ title, children }) {
         <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link legacyBehavior href="/">
-              <a className="text-lg font-bold">amazona</a>
+              <a className="text-lg font-bold">Powered by MAX</a>
             </Link>
             <div>
               <Link legacyBehavior href="/cart">
@@ -46,7 +48,14 @@ export default function Layout({ title, children }) {
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
-                session.user.name
+                <Menu as="div" className="relative inline-block ">
+                  <Menu.Button className="text-blue-300">{session.user.name}</Menu.Button>
+                  <Menu.Items className="absolute right-0 w-60 origin-top-right">
+                    <Menu.Item>
+                      <DropdownLink className="dropdown-link" href="/profile">Profile</DropdownLink>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Menu>
               ) : (
                 <Link legacyBehavior href="/login">
                   <a className="p-2">Login</a>
