@@ -12,7 +12,7 @@ import Cookies from 'js-cookie';
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
-  const { state } = useContext(Store);
+  const { state , dispatch} = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function Layout({ title, children }) {
 
   const logoutclickhander = () => {
     Cookies.remove('cart')
+    dispatch({type:"CART_RESET"})
     signOut({callbackUrl: '/login'})
   }
 
