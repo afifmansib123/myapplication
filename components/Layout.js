@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '@/pages/store';
 import { Menu } from '@headlessui/react'
 import DropdownLink from './DopdownLink';
+import Cookies from 'js-cookie';
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -17,6 +18,12 @@ export default function Layout({ title, children }) {
   useEffect(() => {
     setCartItemsCount(cart.cartitems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartitems]);
+
+
+  const logoutclickhander = () => {
+    Cookies.remove('cart')
+    signOut({callbackUrl: '/login'})
+  }
 
   return (
     <>
@@ -54,6 +61,14 @@ export default function Layout({ title, children }) {
                     <Menu.Item>
                       <DropdownLink className="dropdown-link" href="/profile">Profile</DropdownLink>
                     </Menu.Item>
+                    <Menu.Item>
+                      <DropdownLink className="dropdown-link" href="/order-history">Order history</DropdownLink>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <a href="#" className="dropdown-link" onClick={logoutclickhander}>
+                        logout
+                      </a>
+                    </Menu.Item>
                   </Menu.Items>
                 </Menu>
               ) : (
@@ -66,7 +81,7 @@ export default function Layout({ title, children }) {
         </header>
         <main className="container m-auto mt-4 px-4">{children}</main>
         <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2022 Amazona</p>
+          <p>Copyright © 2022 Afif Mansib</p>
         </footer>
       </div>
     </>

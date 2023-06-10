@@ -32,6 +32,17 @@ export const reducer = (state,action) => {
                 Cookies.set('cart', JSON.stringify({ ...state.cart, cartitems: updatedCartItems }))
                 return { ...state, cart: { ...state.cart, cartitems: updatedCartItems } };
 
+            case "CART_RESET":
+                return{
+                    ...state,
+                    cart : {
+                        cartitems: [],
+                        shippingadress : {location: {}},
+                        paymentMethod : '', 
+
+                    }
+                }
+
     default : 
         return state
             
