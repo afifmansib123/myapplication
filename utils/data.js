@@ -15,32 +15,41 @@ const data = {
       isAdmin: false,
     },
   ],
-    products : [
-        {
-            name : "rockthenight",
-            slug : "item-1",
-            price:"200",
-            image: '/images/image1.jpeg',
-            quantity : 0,
-            countinstock : 10,
-        },
-        {
-            name : "rockthenight2",
-            slug : "item-2",
-            price:"200",
-            image: '/images/image2.jpeg',
-            quantity : 0,
-            countinstock : 10,
-        },
-        {
-            name : "rockthenight3",
-            slug : "item-3",
-            price:"200",
-            image: '/images/image3.jpeg',
-            quantity : 0,
-            countinstock : 10,
-        },
-    ]
+  products: [
+    {
+      name: "rockthenight",
+      slug: "item-1",
+      price: "200",
+      image: '/images/image1.jpeg',
+      quantity: 0,
+      countinstock: 10,
+    },
+    {
+      name: "rockthenight2",
+      slug: "item-2",
+      price: "200",
+      image: '/images/image2.jpeg',
+      quantity: 0,
+      countinstock: 10,
+    },
+    {
+      name: "rockthenight3",
+      slug: "item-3",
+      price: "200",
+      image: '/images/image3.jpeg',
+      quantity: 0,
+      countinstock: 10,
+    },
+    {
+      name: "aita ki moja naki",
+      slug: "item-4",
+      price: "8000",
+      image: '/images/image4.png',
+      quantity: 0,
+      countinstock: 10,
+    },
+
+  ]
 }
 
 export default data
