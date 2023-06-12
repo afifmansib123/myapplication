@@ -5,6 +5,7 @@ import Product from '@/models/Product'
 import { useContext, useState } from 'react'
 import { Store } from './store'
 import {toast} from 'react-toastify'
+import axios from 'axios'
 
 
 export default function Home({products}) {
@@ -12,7 +13,8 @@ export default function Home({products}) {
   const {state,dispatch} = useContext(Store)
   const {cart} = state
 
-  const addtocart = async(products) => {
+  const addtocart = async(products,event) => {
+    event.preventDefault()
     const existitem = cart.cartitems.find((item)=>item.slug==products.slug)
     const quantity = existitem? existitem.quantity + 1 : 1
 
@@ -24,7 +26,7 @@ export default function Home({products}) {
     }
 
     dispatch({type : "ADD_TO_CART", payload: {...products, quantity}})
-    toast.success('item added to cart')
+    return toast.success('item added to cart')
     
 }
   
@@ -45,6 +47,7 @@ export default function Home({products}) {
 export async function getServerSideProps(){
   await db.connect()
   const products = await Product.find().lean()
+  await db.disconnect()
   return{
     props: {
       products : products.map(db.convertDocToObj)

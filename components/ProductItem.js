@@ -13,7 +13,7 @@ export default function Productitem({ products , addtocart}) {
                 <h2>{products.name}</h2>
                 <h2>{products.price}</h2>
                 <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                onClick={()=>addtocart(products)}
+                onClick={(event)=>addtocart(products,event)}
                 >
                     CHECK
                 </button>
