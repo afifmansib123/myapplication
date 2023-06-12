@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Cartscreen () {
 
@@ -21,9 +23,14 @@ function Cartscreen () {
       dispatch({ type: "DELETE_FROM_CART", payload: item });
     };
 
-    const updatecartHandler = (item, qty) => {
+    const updatecartHandler = async(item, qty) => {
       const quantity = Number(qty)
+      const {data} = await axios.get(`/api/products/${item._id}`)
+      if(data.countinstock < quantity){
+        return toast.error('item out of stock')
+      }
       dispatch({type:"ADD_TO_CART",payload:{...item,quantity : quantity}})
+      toast.success('item updated in cart')
     }
 
     const totalprice = 0

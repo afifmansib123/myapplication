@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Productitem({ products }) {
+export default function Productitem({ products , addtocart}) {
     return (
         <div className="card">
             <Link href={`/products/${products.slug}`}>
@@ -12,8 +12,10 @@ export default function Productitem({ products }) {
 
                 <h2>{products.name}</h2>
                 <h2>{products.price}</h2>
-                <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                    Add to Cart
+                <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                onClick={()=>addtocart(products)}
+                >
+                    CHECK
                 </button>
             </Link>
 

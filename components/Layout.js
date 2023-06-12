@@ -8,6 +8,8 @@ import { Store } from '@/pages/store';
 import { Menu } from '@headlessui/react'
 import DropdownLink from './DopdownLink';
 import Cookies from 'js-cookie';
+import NavbarBackground from '../public/images/navbar.png'; 
+
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -38,9 +40,10 @@ export default function Layout({ title, children }) {
 
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav className="flex h-12 items-center px-4 justify-between shadow-md">
+        <nav className="flex h-12 items-center px-4 justify-between shadow-md" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
+            
             <Link legacyBehavior href="/">
-              <a className="text-lg font-bold">Powered by MAX</a>
+              <a className="text-lg font-bold"></a>
             </Link>
             <div>
               <Link legacyBehavior href="/cart">

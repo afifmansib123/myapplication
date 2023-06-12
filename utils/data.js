@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 const data = {
   Users: [
     {
-      name: 'John',
+      name: 'BANK',
       email: 'admin@example.com',
       password: bcrypt.hashSync('123456'),
       isAdmin: true,
@@ -17,7 +17,7 @@ const data = {
   ],
   products: [
     {
-      name: "rockthenight",
+      name: "stats1-sunmiBKK",
       slug: "item-1",
       price: "200",
       image: '/images/image1.jpeg',
@@ -25,7 +25,7 @@ const data = {
       countinstock: 10,
     },
     {
-      name: "rockthenight2",
+      name: "stats2-sunmiCH",
       slug: "item-2",
       price: "200",
       image: '/images/image2.jpeg',
@@ -33,7 +33,7 @@ const data = {
       countinstock: 10,
     },
     {
-      name: "rockthenight3",
+      name: "stats3-sunmiPH",
       slug: "item-3",
       price: "200",
       image: '/images/image3.jpeg',
@@ -41,7 +41,7 @@ const data = {
       countinstock: 10,
     },
     {
-      name: "aita ki moja naki",
+      name: "stats4-sunmiPTY",
       slug: "item-4",
       price: "8000",
       image: '/images/image4.png',
