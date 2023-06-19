@@ -24,18 +24,18 @@ export default function ShippingScreen(){
 
     useEffect(()=>{
         setValue('fullName', shippingadress.fullName);
-        setValue('adress', shippingadress.adress);
+        setValue('address', shippingadress.address);
         setValue('city', shippingadress.city);
 },[setValue,shippingadress])
     
     
 
-    const submitHandler = ({fullName,adress,city}) => {
+    const submitHandler = ({fullName,address,city}) => {
         dispatch({
             type: "SAVE_ADRESS",
-            payload : {fullName,adress,city},
+            payload : {fullName,address,city},
         })
-        Cookies.set('cart', JSON.stringify({...cart, shippingadress:{fullName,adress,city}}))
+        Cookies.set('cart', JSON.stringify({...cart, shippingadress:{fullName,address,city}}))
         router.push('/payment')
     }
     
@@ -68,8 +68,8 @@ export default function ShippingScreen(){
                     </label>
                     <input
                     className="w-full"
-                    id="adress"
-                    {...register('adress',{
+                    id="address"
+                    {...register('address',{
                         required:'please add the full name',
                         minLength: {value: 3, message: 'more than 3 chars at least'}
                     })}

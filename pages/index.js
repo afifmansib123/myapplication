@@ -9,7 +9,7 @@ import axios from 'axios'
 
 
 export default function Home({products}) {
-
+  //connected23
   const {state,dispatch} = useContext(Store)
   const {cart} = state
 
