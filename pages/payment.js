@@ -30,12 +30,12 @@ export default function PaymentScreen(){
         router.push('/placeorder')
     }
 
-    useEffect(()=>{
-        if(!shippingadress.adress){
-            return router.push('/shipping')
-        }
-        setselectedpaymentmethod(paymentMethod || '')
-    },[paymentMethod,router,shippingadress.adress])
+    useEffect(() => {
+      if (!shippingadress.address) {
+        return router.push('/shipping');
+      }
+      setselectedpaymentmethod(paymentMethod || '');
+    }, [paymentMethod, router, shippingadress.address]);
 
     
 
