@@ -46,7 +46,7 @@ export default function Layout({ title, children }) {
               <a className="text-lg font-bold"></a>
             </Link>
             <div>
-              <Link legacyBehavior href="/cart">
+              <Link legacyBehavior href="/cartscreen">
                 <a className="p-2">
                   Cart
                   {cartItemsCount > 0 && (
