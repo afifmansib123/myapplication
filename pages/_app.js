@@ -19,6 +19,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     )
 }
 
+
 function Auth({children}){
   const router = useRouter()
   const {status} = useSession({

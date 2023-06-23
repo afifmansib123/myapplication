@@ -6,9 +6,37 @@ import { useContext, useState } from 'react'
 import { Store } from './store'
 import {toast} from 'react-toastify'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+
+
+const changeTheme = () => {
+  let newTheme
+  if (document.body.classList.contains('dark')) {
+    // toggle to light theme
+    document.body.classList.replace('dark', 'light')
+    newTheme = 'light'
+  } else if (document.body.classList.contains('light')) {
+    // toggle to pink theme
+    document.body.classList.replace('light', 'pink')
+    newTheme = 'pink'
+  } else if (document.body.classList.contains('pink')){
+    // toggle to dark theme
+    document.body.classList.replace('pink', 'orange')
+    newTheme = 'orange'
+  }else{
+    document.body.classList.replace('orange', 'dark')
+    newTheme = 'dark'
+  }
+
+  // set a cookie for ssr purposes
+  Cookies.set('theme', newTheme)
+  }
 
 
 export default function Home({products}) {
+
+
+  
   //connected23
   const {state,dispatch} = useContext(Store)
   const {cart} = state
@@ -32,13 +60,25 @@ export default function Home({products}) {
   
   return (
     <>
+
+
+    
       <Layout title = "home page">
+
+
+      <div className='container'>
+      <div onClick={changeTheme}>
+        Dark Theme
+      </div>
+      </div>
+
        <div className="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-3">
         {products.map((product)=>(
           <Productitem products={product} key={product.slug} addtocart={addtocart}></Productitem>
         ))}
         
        </div>
+       
       </Layout>
     </>
   )

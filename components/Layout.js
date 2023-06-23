@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import NavbarBackground from '../public/images/navbar.png'; 
 
 
+
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
@@ -27,6 +28,7 @@ export default function Layout({ title, children }) {
     dispatch({type:"CART_RESET"})
     signOut({callbackUrl: '/login'})
   }
+  
 
   return (
     <>
@@ -34,6 +36,7 @@ export default function Layout({ title, children }) {
         <title>{title ? title + ' - Sunmi POS' : 'Sunmi POS'}</title>
         <meta name="description" content="Ecommerce Website" />
         <link rel="icon" href="/favicon.ico" />
+      
       </Head>
 
       <ToastContainer position="bottom-center" limit={1} />
