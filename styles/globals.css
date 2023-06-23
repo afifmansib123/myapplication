@@ -88,7 +88,7 @@
 
 html,
 body {
-  max-width: 100vw;
+  max-width: 300vw;
   overflow-x: hidden;
 }
 
@@ -163,6 +163,11 @@ body {
   transition: background-color 0.25s ease-in;
 }
 
+h1.mb4{
+  --font-color: #c8bd21;
+  --bg-color: #1b1bcc;
+}
+
 .container {
   margin: 0 auto;
   min-height: 20vh;
@@ -180,4 +185,10 @@ a {
   cursor: pointer;
   color: green;
   text-decoration: underline;
+}
+.primary-button{
+  background-color: #1b1bcc;
+  color: #31d67b;
+  border-color: aqua;
+  text-emphasis: var(--secondary-glow);
 }
