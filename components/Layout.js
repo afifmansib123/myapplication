@@ -46,8 +46,8 @@ export default function Layout({ title, children }) {
       <div className="flex max-h-screen">
         <Sidebar/>
       <div className="flex min-h-screen flex-col justify-between " style={{width:2000}}>
-        <header className="fixed top-0 left-0 right-0">
-        <nav className="flex h-12 items-center px-4 justify-between shadow-md" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
+        <header className="fixed top-0 left-0 right-0 z-10">
+        <nav className="flex h-12 items-center px-4 justify-between shadow-md w-screen" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
             
             <Link legacyBehavior href="/">
               <a className="text-lg font-bold"></a>
@@ -94,7 +94,7 @@ export default function Layout({ title, children }) {
         <main className="container m-auto mt-4 px-4" >
         
           {children}</main>
-        <footer className="fixed bottom-0 left-0 right-0 flex h-10 justify-center items-center shadow-inner pt-4" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
+        <footer className="fixed bottom-0 left-0 right-0 flex h-5 justify-center items-center shadow-inner pt-4" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
           <div>Copyright © 2022 Afif Mansib</div>
         </footer>
       </div>

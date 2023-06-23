@@ -6,10 +6,10 @@ const Sidebar = () => {
     const [open, setOpen] = useState(false);
     return(
     <div
-    className={` ${
-      open ? "lg:w-40" : "lg:w-60 "
-    } flex flex-col lg:h-screen p-3 w-full bg-gray-800 shadow duration-300`}
-  >
+    className={`${
+        open ? "lg:w-40" : "lg:w-60"
+      } fixed top-0 left-0 flex flex-col lg:h-screen p-3 w-full bg-pink-800 shadow duration-300`}
+    >
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">Dashboard</h2>

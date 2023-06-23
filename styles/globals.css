@@ -184,7 +184,7 @@ h1.mb4{
 
 a {
   cursor: pointer;
-  color: green;
+  color: rgb(129, 172, 129);
   text-decoration: underline;
 }
 .primary-button{
