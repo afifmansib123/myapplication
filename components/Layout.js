@@ -9,10 +9,12 @@ import { Menu } from '@headlessui/react'
 import DropdownLink from './DopdownLink';
 import Cookies from 'js-cookie';
 import NavbarBackground from '../public/images/navbar.png'; 
-
+import Sidebar from './sidebar';
 
 
 export default function Layout({ title, children }) {
+
+
   const { status, data: session } = useSession();
 
   const { state , dispatch} = useContext(Store);
@@ -36,13 +38,15 @@ export default function Layout({ title, children }) {
         <title>{title ? title + ' - Sunmi POS' : 'Sunmi POS'}</title>
         <meta name="description" content="Ecommerce Website" />
         <link rel="icon" href="/favicon.ico" />
-      
+        
       </Head>
 
       <ToastContainer position="bottom-center" limit={1} />
-
-      <div className="flex min-h-screen flex-col justify-between">
-        <header>
+      
+      <div className="flex max-h-screen">
+        <Sidebar/>
+      <div className="flex min-h-screen flex-col justify-between " style={{width:2000}}>
+        <header className="fixed top-0 left-0 right-0">
         <nav className="flex h-12 items-center px-4 justify-between shadow-md" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
             
             <Link legacyBehavior href="/">
@@ -85,11 +89,15 @@ export default function Layout({ title, children }) {
               )}
             </div>
           </nav>
+          
         </header>
-        <main className="container m-auto mt-4 px-4">{children}</main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2022 Afif Mansib</p>
+        <main className="container m-auto mt-4 px-4" >
+        
+          {children}</main>
+        <footer className="fixed bottom-0 left-0 right-0 flex h-10 justify-center items-center shadow-inner pt-4" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
+          <div>Copyright © 2022 Afif Mansib</div>
         </footer>
+      </div>
       </div>
     </>
   );
