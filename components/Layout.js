@@ -45,8 +45,8 @@ export default function Layout({ title, children }) {
       
       <div className="flex max-h-screen">
         <Sidebar/>
-      <div className="flex min-h-screen flex-col justify-between " style={{width:2000}}>
-        <header className="fixed top-0 left-0 right-0 z-10">
+      <div className="flex flex-col flex-1 justify-between">
+        <header>
         <nav className="flex h-12 items-center px-4 justify-between shadow-md w-screen" style={{ backgroundImage: `url(${NavbarBackground.src})`, backgroundSize: 'cover' }}>
             
             <Link legacyBehavior href="/">
