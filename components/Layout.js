@@ -75,6 +75,16 @@ export default function Layout({ title, children }) {
                     <Menu.Item>
                       <DropdownLink className="dropdown-link" href="/order-history">Order history</DropdownLink>
                     </Menu.Item>
+                    {session.user.isExporter && (
+                      <Menu.Item>
+                        <DropdownLink
+                          className="dropdown-link"
+                          href="/shop/dashboard"
+                        >
+                          Admin Dashboard
+                        </DropdownLink>
+                      </Menu.Item>
+                    )}
                     <Menu.Item>
                       <a href="#" className="dropdown-link" onClick={logoutclickhander}>
                         logout

@@ -170,7 +170,7 @@ h1.mb4{
 
 .container {
   margin: 0 auto;
-  min-height: 20vh;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -184,7 +184,7 @@ h1.mb4{
 
 a {
   cursor: pointer;
-  color: rgb(129, 172, 129);
+  color: rgb(0, 255, 0);
   text-decoration: underline;
 }
 .primary-button{

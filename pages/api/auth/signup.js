@@ -1,6 +1,7 @@
 import db from "@/utils/db";
 import User from "@/models/User";
 import bcrypt from 'bcryptjs'
+import { useReducer } from "react";
 
 async function handler (req,res) {
     if(req.method !== 'POST'){
@@ -34,6 +35,7 @@ async function handler (req,res) {
         email,
         password : bcrypt.hashSync(password),
         isAdmin : false,
+        isExporter : true,
     })
     const user = newUser.save()
     await db.disconnect()
@@ -44,6 +46,7 @@ async function handler (req,res) {
         name : user.name,
         email : user.email,
         isAdmin : user.isAdmin,
+        isExporter : user.isExporter,
     })
 }
 export default handler
